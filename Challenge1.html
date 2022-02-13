@@ -1,0 +1,118 @@
+<meta charset="utf-8">
+
+<style>
+	*{
+		font-family:  sans-serif;
+		background: white;
+	}
+
+	h1{
+		margin: 0px;
+		padding: 50px;
+		text-align: center;
+		background: #73C6B6;
+	}
+
+	#botones{
+		background: white;
+		text-align: center;
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+
+	#parrafo{
+		padding: 15px;
+		background: #FFC300;
+		margin: auto;
+		height: 200px;
+		width: 600px;
+		border: 1px solid black;
+	}
+
+
+	
+</style>
+
+<h1>Encriptador/Desencriptador de texto</h1>
+
+<div id="botones">
+	<input>
+	<button name="Encriptar">Encriptar</button>
+	<button name="Desencriptar">Desencriptar</button>
+</div>
+
+<div id="parrafo">
+	
+</div>
+
+<button id="copiar">Copiar</button>
+
+<script type="text/javascript">
+	
+	function encriptar(){
+		var texto = document.querySelector("input").value;
+		var nuevotexto = ""; //cadena encriptada
+
+		for (var i = 0; i < texto.length-1 ; i=i+2){
+
+			nuevotexto += texto[i+1];
+			nuevotexto += texto[i];
+
+
+			//alert(i);
+			//console.log(texto.length);
+		}
+
+		if (i!=texto.length){
+			nuevotexto += texto[texto.length-1]
+		}
+
+		document.getElementById('parrafo').innerHTML=nuevotexto;
+;		
+
+	}
+
+	function desencriptar(){
+		var texto = document.querySelector("input").value;
+		var nuevotexto = ""; //cadena desencriptada
+
+		for (var i = 0; i < texto.length-1 ; i=i+2){
+
+			nuevotexto += texto[i+1];
+			nuevotexto += texto[i];
+
+
+			//alert(i);
+			//console.log(texto.length);
+		}
+
+		if (i!=texto.length){
+			nuevotexto += texto[texto.length-1]
+		}
+
+		document.getElementById('parrafo').innerHTML=nuevotexto;		
+
+	}
+
+	function copiar() {
+ 		var copyText = document.querySelector('#parrafo');
+ 		
+ 		var texto = copyText.innerHTML
+ 		var promise = navigator.clipboard.writeText(texto)
+ 		console.log(promise)
+ 		alert("Se ha copiado: " + texto)
+  		//copyText.select();
+  		//document.execCommand("copy");  //copia al portapapeles
+	}
+
+	var botonEncriptar = document.querySelector("button[name='Encriptar']");
+	var botonDesencriptar = document.querySelector("button[name='Desencriptar']");
+	//var botonCopiar = document.querySelector("button[name='Copiar']");
+
+	botonEncriptar.onclick = encriptar;
+	botonDesencriptar.onclick = desencriptar;
+	//botonCopiar.onclick = copiar;
+
+	document.querySelector("#copiar").addEventListener("click", copiar);
+
+</script>
